@@ -1,0 +1,127 @@
+class Node:
+	def __init__(self, value):
+		self.value = value
+		self.next = None
+
+class SinglyLinkedList:
+	def __init__(self):
+		self.head = None
+		self.tail = None
+		self._length = 0
+
+	def append(self, value):
+		new_node = Node(value)
+		if not self._length:
+			self.head = self.tail = new_node
+		else:
+			self.tail.next = new_node
+			self.tail = new_node
+		self._length += 1
+		return self
+
+	def prepend(self, value):
+		new_node = Node(value)
+		if not self._length:
+			self.head = self.tail = new_node
+		else:
+			new_node.next = self.head
+			self.head = new_node
+		self._length += 1
+		return self
+	
+	# def pop_left(self):
+	# 	if not self._length:
+	# 		return self
+	# 	else:
+	# 		placeholder = Node(0)
+	# 		placeholder.next = self.head.next
+	# 		del self.head
+	# 		self.head = placeholder.next
+	# 		del placeholder
+	# 	self._length -= 1
+	# 	return self
+
+	def pop_left(self):
+		if not self._length:
+			return Exception("list is empty")
+		former_head = self.head
+		self.head = former_head.next
+		former_head.next = None
+		self._length -= 1
+		if not self._length:
+			self.tail = None
+		return former_head.value
+	
+	def pop_right(self):
+		if not self._length:
+			return Exception("list is empty")
+		former_tail = self.tail
+		val = former_tail.value
+		curr = self.head
+		while curr.next != self.tail:
+			curr = curr.next
+		if curr == None:
+			self.tail = None
+			self._length -= 1
+			return val
+		curr.next = None
+		self.tail = curr
+		self._length -= 1
+		return former_tail.value
+
+my_list = SinglyLinkedList()
+empty_list = SinglyLinkedList()
+one_element_list = SinglyLinkedList().append(1)
+
+# print(my_list)
+# print(my_list.head)
+# print(my_list.tail)
+# print(my_list._length)
+
+# my_list.append(3)
+# my_list.append(5)
+# my_list.append(7)
+
+# print(my_list)
+# print("head value:", my_list.head.value)
+# print("tail value:", my_list.tail.value)
+# print("list length:", my_list._length)
+
+# my_list.append(3)
+# my_list.append(5)
+# my_list.append(7)
+# my_list.prepend(2)
+
+# print("list head:", my_list.head.value)
+# print("list length:", my_list._length)
+
+# print("value to pop from left:", my_list.pop_left())
+# print("list head:", my_list.head.value)
+# print("list length:", my_list._length)
+
+my_list.append(3)
+my_list.append(5)
+my_list.append(7)
+my_list.prepend(2)
+
+print("value to pop from right:", my_list.pop_right())
+print("list tail:", my_list.tail.value)
+print("list length:", my_list._length)
+
+
+print(empty_list.pop_left())
+print(empty_list.pop_right())
+
+print(one_element_list.head.value)
+print(one_element_list.tail.value)
+print(one_element_list.pop_left())
+print(one_element_list.head)
+print(one_element_list.tail)
+print(one_element_list._length)
+
+# print(one_element_list.head.value)
+# print(one_element_list.tail.value)
+# print(one_element_list.pop_right())
+# print(one_element_list.head.value)
+# print(one_element_list.tail.value)
+# print(one_element_list._length)
