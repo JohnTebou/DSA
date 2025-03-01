@@ -55,19 +55,25 @@ class SinglyLinkedList:
 	def pop_right(self):
 		if not self._length:
 			return Exception("list is empty")
-		former_tail = self.tail
-		val = former_tail.value
-		curr = self.head
-		while curr.next != self.tail:
-			curr = curr.next
-		if curr == None:
-			self.tail = None
-			self._length -= 1
-			return val
-		curr.next = None
-		self.tail = curr
+		tail_value = self.tail.value
+		if self._length == 1:
+			self.head = self.tail = None
+		else:
+			temp_node = self.head
+			while temp_node.next is not self.tail:
+				temp_node = temp_node.next
+			self.tail = temp_node
+			self.tail.next = None
 		self._length -= 1
-		return former_tail.value
+		return tail_value
+
+	def remove(self, value):
+		if not self._length:
+			return Exception("list is empty")
+		if self.head.value == value:
+			return self.pop_left()
+		
+
 
 my_list = SinglyLinkedList()
 empty_list = SinglyLinkedList()
@@ -99,29 +105,29 @@ one_element_list = SinglyLinkedList().append(1)
 # print("list head:", my_list.head.value)
 # print("list length:", my_list._length)
 
-my_list.append(3)
-my_list.append(5)
-my_list.append(7)
-my_list.prepend(2)
+# my_list.append(3)
+# my_list.append(5)
+# my_list.append(7)
+# my_list.prepend(2)
 
-print("value to pop from right:", my_list.pop_right())
-print("list tail:", my_list.tail.value)
-print("list length:", my_list._length)
+# print("value to pop from right:", my_list.pop_right())
+# print("list tail:", my_list.tail.value)
+# print("list length:", my_list._length)
 
 
-print(empty_list.pop_left())
-print(empty_list.pop_right())
+# print(empty_list.pop_left())
+# print(empty_list.pop_right())
 
-print(one_element_list.head.value)
-print(one_element_list.tail.value)
-print(one_element_list.pop_left())
-print(one_element_list.head)
-print(one_element_list.tail)
-print(one_element_list._length)
+# print(one_element_list.head.value)
+# print(one_element_list.tail.value)
+# print(one_element_list.pop_left())
+# print(one_element_list.head)
+# print(one_element_list.tail)
+# print(one_element_list._length)
 
 # print(one_element_list.head.value)
 # print(one_element_list.tail.value)
 # print(one_element_list.pop_right())
-# print(one_element_list.head.value)
-# print(one_element_list.tail.value)
+# print(one_element_list.head)
+# print(one_element_list.tail)
 # print(one_element_list._length)
