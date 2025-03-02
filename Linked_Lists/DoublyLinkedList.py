@@ -10,7 +10,6 @@ class DoublyLinkedList:
 		self.tail = None
 		self._length = 0
 	
-	# adds an element to end of doubly linked list
 	def append(self, value):
 		new_node = Node(value)
 		if not self._length:
@@ -22,7 +21,6 @@ class DoublyLinkedList:
 		self._length += 1
 		return self
 	
-	# adds an element to beginning of doubly linked list
 	def prepend(self, value):
 		new_node = Node(value)
 		if not self._length:
@@ -34,10 +32,11 @@ class DoublyLinkedList:
 		self._length += 1
 		return self
 	
-	# removes an element from beginning of doubly linked list
 	def pop_left(self):
 		if not self._length:
 			return Exception("list is empty")
+
+
 		former_head = self.head
 		if self._length == 1:
 			self.tail = self.head = None
@@ -48,10 +47,11 @@ class DoublyLinkedList:
 		self._length -= 1
 		return former_head.value
 
-	# removes an element from end of doubly linked list
 	def pop_right(self):
 		if not self._length:
 			return Exception("list is empty")
+		
+
 		former_tail = self.tail
 		if self._length == 1:
 			self.tail = self.head = None
@@ -62,15 +62,18 @@ class DoublyLinkedList:
 		self._length -= 1
 		return former_tail.value
 
-	# removes a specified element from doubly linked list if present
 	def remove(self, value):
 		if not self._length:
 			return Exception("list is empty")
 		if self.head.value == value:
 			return self.pop_left()
 		current_node = self.head
+
+		# linearly traverse nodes until value is found or tail is passed
 		while current_node is not None and current_node.value != value:
 			current_node = current_node.next
+
+		# handle value setting
 		if current_node is None:
 			return Exception("value not found")
 		elif current_node.next is None:
@@ -82,23 +85,26 @@ class DoublyLinkedList:
 		self._length -= 1
 		return current_node.value
 
-	# reverses doubly linked list
 	def reverse(self):
 		if self._length <= 1:
 			return self
 		curr = self.head
+
+		# switch previous and next pointers; then move to the (now)
+		# previous node
 		while curr != None:
 			curr.next, curr.previous = curr.previous, curr.next
 			curr = curr.previous
 		self.head, self.tail = self.tail, self.head
 		return self
 	
-	# displays values of doubly linked list in a python list
 	def valuelist(self):
 		if not self._length:
 			return []
 		if self._length == 1:
 			return [self.head.value]
+		
+		
 		curr = self.head
 		value_list = []
 		while curr != None:
@@ -110,18 +116,18 @@ my_list = DoublyLinkedList()
 empty_list = DoublyLinkedList()
 one_element_list = DoublyLinkedList().append(1)
 
-order_list = DoublyLinkedList()
-order_list.append(1)
-order_list.append(2)
-order_list.append(3)
-order_list.append(4)
-order_list.append(5)
-order_list.append(6)
+# order_list = DoublyLinkedList()
+# order_list.append(1)
+# order_list.append(2)
+# order_list.append(3)
+# order_list.append(4)
+# order_list.append(5)
+# order_list.append(6)
 
-order_list.remove(4)
+# order_list.remove(4)
 
-print("ordered without 4:", order_list.valuelist())
+# print("ordered without 4:", order_list.valuelist())
 
-order_list.reverse()
+# order_list.reverse()
 
-print("reverse previous:", order_list.valuelist())
+# print("reverse previous:", order_list.valuelist())

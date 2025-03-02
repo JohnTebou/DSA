@@ -30,6 +30,7 @@ class SinglyLinkedList:
 			self.head = new_node
 		self._length += 1
 		return self
+
 	# removes an element from beginning of singly linked list
 	def pop_left(self):
 		if not self._length:

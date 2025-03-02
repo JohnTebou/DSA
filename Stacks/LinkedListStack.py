@@ -32,9 +32,11 @@ class SinglyLinkedListStack:
 		self._size -= 1
 		return former_top.value
 	
+	# views top element of stack
 	def peek(self):
 		return self._top.value if self._top else None
 	
+	# clears stack
 	def clear(self):
 		self._top = None
 		self._size = 0
