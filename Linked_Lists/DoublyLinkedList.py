@@ -59,12 +59,62 @@ class DoublyLinkedList:
 		return former_tail.value
 
 	def remove(self, value):
-		pass
+		if not self._length:
+			return Exception("list is empty")
+		if self.head.value == value:
+			return self.pop_left()
+		current_node = self.head
+		while current_node is not None and current_node.value != value:
+			current_node = current_node.next
+		if current_node is None:
+			return Exception("value not found")
+		elif current_node.next is None:
+			return self.pop_right()
+		else:
+			current_node.previous.next = current_node.next
+			current_node.next.previous = current_node.previous
+			current_node.next = current_node.previous = None
+		self._length -= 1
+		return current_node.value
 
 	def reverse(self):
-		pass
-
+		if self._length <= 1:
+			return self
+		curr = self.head
+		while curr != None:
+			curr.next, curr.previous = curr.previous, curr.next
+			curr = curr.previous
+		self.head, self.tail = self.tail, self.head
+		return self
+	
+	def valuelist(self):
+		if not self._length:
+			return []
+		if self._length == 1:
+			return [self.head.value]
+		curr = self.head
+		value_list = []
+		while curr != None:
+			value_list.append(curr.value)
+			curr = curr.next
+		return value_list
 	
 my_list = DoublyLinkedList()
 empty_list = DoublyLinkedList()
 one_element_list = DoublyLinkedList().append(1)
+
+order_list = DoublyLinkedList()
+order_list.append(1)
+order_list.append(2)
+order_list.append(3)
+order_list.append(4)
+order_list.append(5)
+order_list.append(6)
+
+order_list.remove(4)
+
+print("ordered without 4:", order_list.valuelist())
+
+order_list.reverse()
+
+print("reverse previous:", order_list.valuelist())
