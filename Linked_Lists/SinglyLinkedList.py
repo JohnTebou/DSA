@@ -9,6 +9,7 @@ class SinglyLinkedList:
 		self.tail = None
 		self._length = 0
 
+	# adds an element to end of singly linked list
 	def append(self, value):
 		new_node = Node(value)
 		if not self._length:
@@ -19,6 +20,7 @@ class SinglyLinkedList:
 		self._length += 1
 		return self
 
+	# adds an element to beginning of singly linked list
 	def prepend(self, value):
 		new_node = Node(value)
 		if not self._length:
@@ -28,7 +30,7 @@ class SinglyLinkedList:
 			self.head = new_node
 		self._length += 1
 		return self
-
+	# removes an element from beginning of singly linked list
 	def pop_left(self):
 		if not self._length:
 			return Exception("list is empty")
@@ -40,6 +42,7 @@ class SinglyLinkedList:
 			self.tail = None
 		return former_head.value
 	
+	# removes an element from end of singly linked list
 	def pop_right(self):
 		if not self._length:
 			return Exception("list is empty")
@@ -55,6 +58,7 @@ class SinglyLinkedList:
 		self._length -= 1
 		return tail_value
 
+	# removes a specified element from singly linked list if present
 	def remove(self, value):
 		if not self._length:
 			return Exception("list is empty")
@@ -76,6 +80,7 @@ class SinglyLinkedList:
 		self._length -= 1
 		return current_node.value
 	
+	# reverses singly linked list
 	def reverse(self):
 		if self._length <= 1:
 			return self
@@ -89,6 +94,7 @@ class SinglyLinkedList:
 		self.head, self.tail = self.tail, self.head
 		return self
 	
+	# displays values of singly linked list in a python list
 	def valuelist(self):
 		if not self._length:
 			return []

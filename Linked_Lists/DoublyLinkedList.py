@@ -10,6 +10,7 @@ class DoublyLinkedList:
 		self.tail = None
 		self._length = 0
 	
+	# adds an element to end of doubly linked list
 	def append(self, value):
 		new_node = Node(value)
 		if not self._length:
@@ -21,6 +22,7 @@ class DoublyLinkedList:
 		self._length += 1
 		return self
 	
+	# adds an element to beginning of doubly linked list
 	def prepend(self, value):
 		new_node = Node(value)
 		if not self._length:
@@ -32,6 +34,7 @@ class DoublyLinkedList:
 		self._length += 1
 		return self
 	
+	# removes an element from beginning of doubly linked list
 	def pop_left(self):
 		if not self._length:
 			return Exception("list is empty")
@@ -45,6 +48,7 @@ class DoublyLinkedList:
 		self._length -= 1
 		return former_head.value
 
+	# removes an element from end of doubly linked list
 	def pop_right(self):
 		if not self._length:
 			return Exception("list is empty")
@@ -58,6 +62,7 @@ class DoublyLinkedList:
 		self._length -= 1
 		return former_tail.value
 
+	# removes a specified element from doubly linked list if present
 	def remove(self, value):
 		if not self._length:
 			return Exception("list is empty")
@@ -77,6 +82,7 @@ class DoublyLinkedList:
 		self._length -= 1
 		return current_node.value
 
+	# reverses doubly linked list
 	def reverse(self):
 		if self._length <= 1:
 			return self
@@ -87,6 +93,7 @@ class DoublyLinkedList:
 		self.head, self.tail = self.tail, self.head
 		return self
 	
+	# displays values of doubly linked list in a python list
 	def valuelist(self):
 		if not self._length:
 			return []
