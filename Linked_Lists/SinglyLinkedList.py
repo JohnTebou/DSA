@@ -72,7 +72,35 @@ class SinglyLinkedList:
 			return Exception("list is empty")
 		if self.head.value == value:
 			return self.pop_left()
-		
+		previous_node = self.head
+		current_node = self.head.next
+		while current_node is not None and current_node.value != value:
+			previous_node = current_node
+			current_node = current_node.next
+		if current_node is None:
+			return Exception("value not found")
+		elif current_node.next is None:
+			self.tail = previous_node
+			previous_node.next = None
+		else:
+			previous_node.next = current_node.next
+			current_node.next = None
+		self._length -= 1
+		return current_node.value
+	
+	def reverse(self):
+		if self._length <= 1:
+			return self
+		prev = None
+		curr = self.head
+		while curr != None:
+			temp = curr.next
+			curr.next = prev
+			prev = curr
+			curr = temp
+		self.head, self.tail = self.tail, self.head
+		return self
+
 
 
 my_list = SinglyLinkedList()
@@ -131,3 +159,37 @@ one_element_list = SinglyLinkedList().append(1)
 # print(one_element_list.head)
 # print(one_element_list.tail)
 # print(one_element_list._length)
+
+# my_list.append(3)
+# my_list.append(5)
+# my_list.append(7)
+# my_list.prepend(2)
+
+# my_list.remove(3)
+# my_list.remove(7)
+
+
+# print("head value:", my_list.head.value)
+# print("tail value:", my_list.tail.value)
+
+# alphabetical_list = SinglyLinkedList()
+
+# alphabetical_list.append(1)
+# alphabetical_list.append(2)
+# alphabetical_list.append(3)
+# alphabetical_list.append(4)
+# alphabetical_list.append(5)
+# alphabetical_list.append(6)
+
+# print(alphabetical_list.head.value)
+# print(alphabetical_list.tail.value,"\n")
+
+# alphabetical_list.reverse()
+
+# print(alphabetical_list.head.value)
+# print(alphabetical_list.head.next.value)
+# print(alphabetical_list.head.next.next.value)
+# print(alphabetical_list.head.next.next.next.value)
+# print(alphabetical_list.head.next.next.next.next.value)
+# print(alphabetical_list.tail.value)
+# print(alphabetical_list.tail.next)
