@@ -28,18 +28,6 @@ class SinglyLinkedList:
 			self.head = new_node
 		self._length += 1
 		return self
-	
-	# def pop_left(self):
-	# 	if not self._length:
-	# 		return self
-	# 	else:
-	# 		placeholder = Node(0)
-	# 		placeholder.next = self.head.next
-	# 		del self.head
-	# 		self.head = placeholder.next
-	# 		del placeholder
-	# 	self._length -= 1
-	# 	return self
 
 	def pop_left(self):
 		if not self._length:
