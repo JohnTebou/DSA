@@ -100,7 +100,18 @@ class SinglyLinkedList:
 			curr = temp
 		self.head, self.tail = self.tail, self.head
 		return self
-
+	
+	def valuelist(self):
+		if not self._length:
+			return []
+		if self._length == 1:
+			return [self.head.value]
+		curr = self.head
+		value_list = []
+		while curr != None:
+			value_list.append(curr.value)
+			curr = curr.next
+		return value_list
 
 
 my_list = SinglyLinkedList()
@@ -193,3 +204,18 @@ one_element_list = SinglyLinkedList().append(1)
 # print(alphabetical_list.head.next.next.next.next.value)
 # print(alphabetical_list.tail.value)
 # print(alphabetical_list.tail.next)
+
+# alphabetical_list = SinglyLinkedList()
+
+# alphabetical_list.append(1)
+# alphabetical_list.append(2)
+# alphabetical_list.append(3)
+# alphabetical_list.append(4)
+# alphabetical_list.append(5)
+# alphabetical_list.append(6)
+
+# print(alphabetical_list.valuelist())
+
+# alphabetical_list.reverse()
+
+# print(alphabetical_list.valuelist())
